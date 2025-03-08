@@ -5,7 +5,7 @@
 ### 1. Habilitar 
 Para habilitar o WSL2 na sua máquina Windows, execute este comando no Powershell (execute como Administrador) . Certifique-se de reiniciar seu computador após a conclusão deste comando.
 
-Você pode pular esta etapa se já tiver instalado o WSL2 anteriormente.
+* Você pode pular esta etapa se já tiver instalado o WSL2 anteriormente.
 
 ```
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
@@ -17,7 +17,7 @@ Instalar Ubuntu-24.04. Forneça o usuário e senha quando solicitado.
 ```
 wsl --install Ubuntu-24.04
 ```
-Para acessar o shell do Ubuntu, digite `wsl` no CMD ou Powershell.
+* Para acessar o shell do Ubuntu, digite `wsl` no CMD ou Powershell.
 
 ### 3. Instale o Docker no Ubuntu
 
@@ -73,7 +73,7 @@ sudo systemctl restart containerd.service
 
 ### 5. Exponha o daemon do docker ao Windows via porta 2375
 
-Este comando permite que o daemon do Docker receba instruções da porta 2375. Isso também significa que podemos acessar a porta 2375do Windows.
+Este comando permite que o daemon do Docker receba instruções da porta 2375. Isso também significa que podemos acessar a porta 2375 do Windows.
 ```bash
 #!/bin/bash
 sudo cp /lib/systemd/system/docker.service /etc/systemd/system/
@@ -87,11 +87,11 @@ sudo systemctl restart docker.service
 ### 6. Baixe o cliente Docker para WINDOWS
 Baixe o cliente docker [desta url](https://download.docker.com/win/static/stable/x86_64/docker-28.0.1.zip) . No momento da escrita, a versão mais recente é docker-28.0.1.zip. Extraia o zip baixado e adicione a pasta à sua variável de ambiente PATH.
 
-Verifique se tudo funciona digitando `docker` em um novo CMD ou Powershell.
+* Verifique se tudo funciona digitando `docker` em um novo CMD ou Powershell.
 
 ### 7. Integrar o cliente Docker Windows com o Docker instalado no WSL
 ```
-# run this command in Powershell
+# rode este commando no CMD ou Powershell
 
 docker --version
 docker context create lin --docker host=tcp://127.0.0.1:2375
