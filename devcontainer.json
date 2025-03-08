@@ -1,0 +1,12 @@
+
+{
+	"name": "AMBIENTE-DEV",
+	
+    "dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspaces",
+
+    "forwardPorts": [8080]
+
+	//"remoteUser": "root"
+}
