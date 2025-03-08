@@ -99,4 +99,4 @@ docker context use lin
 docker run hello-world
 ```
 
-[Para mais detalhes referente, inclusive como configurar no DevPod, acesse a fonte](https://devpod.sh/docs/tutorials/docker-provider-via-wsl#2-install-wsl2-distro)
+[Para mais detalhes, inclusive como configurar no DevPod, acesse a fonte deste tutorial em inglês](https://devpod.sh/docs/tutorials/docker-provider-via-wsl#2-install-wsl2-distro)
