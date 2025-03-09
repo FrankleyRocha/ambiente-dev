@@ -87,6 +87,8 @@ sudo systemctl restart docker.service
 ### 6. Baixe o cliente Docker para WINDOWS
 Baixe o cliente docker [desta url](https://download.docker.com/win/static/stable/x86_64/docker-28.0.1.zip) . No momento da escrita, a versão mais recente é docker-28.0.1.zip. Extraia o zip baixado e adicione a pasta à sua variável de ambiente PATH.
 
+https://github.com/docker/compose/releases/download/v2.33.1/docker-compose-windows-x86_64.exe
+
 * Verifique se tudo funciona digitando `docker` em um novo CMD ou Powershell.
 
 ### 7. Integrar o cliente Docker Windows com o Docker instalado no WSL
