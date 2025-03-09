@@ -14,19 +14,19 @@ RUN apt install -y \
     zip unzip
 
 #necessario para o python
-RUN apt install -y \
-    zlib1g-dev \
-    libncurses5-dev \
-    libgdbm-dev \
-    libnss3-dev \
-    libssl-dev \
-    libreadline-dev \
-    libffi-dev \
-    libbz2-dev \
-    libsqlite3-dev \
-    liblzma-dev \
-	python3-tk \
-    tk-dev
+#RUN apt install -y \
+#    zlib1g-dev \
+#    libncurses5-dev \
+#    libgdbm-dev \
+#    libnss3-dev \
+#    libssl-dev \
+#    libreadline-dev \
+#    libffi-dev \
+#    libbz2-dev \
+#    libsqlite3-dev \
+#    liblzma-dev \
+#	python3-tk \
+#    tk-dev
 
 #opcional docker
 #RUN apt install -y \
@@ -41,30 +41,44 @@ RUN apt install -y \
 #RUN apt install -y \
 #    libswt-gtk-4-java
 
-# add the user
-RUN useradd --create-home toolbox -s /bin/bash
-RUN echo "toolbox:toolbox" | chpasswd
-RUN usermod -aG sudo toolbox
-#RUN usermod -aG docker toolbox
+# remove the user ubuntu
+RUN deluser ubuntu
 
-USER toolbox
+ARG USERNAME=toolbox
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
+
+# Create the user
+RUN groupadd --gid $USER_GID $USERNAME \
+    && useradd --create-home --uid $USER_UID --gid $USER_GID -m $USERNAME -s /bin/bash \
+    #
+    # [Optional] Add sudo support. Omit if you don't need to install software after connecting.
+    && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
+    && chmod 0440 /etc/sudoers.d/$USERNAME
+
+# ********************************************************
+# * Anything else you want to do like clean up goes here *
+# ********************************************************
+
+# [Optional] Set the default user. Omit if you want to keep the default as root.
+USER $USERNAME
+
 WORKDIR /home/toolbox
-RUN mkdir ~/projects
 
 RUN curl -s "https://get.sdkman.io" | bash
 
-RUN curl https://pyenv.run | bash
-RUN echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
-RUN echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
-RUN echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+#RUN curl https://pyenv.run | bash
+#RUN echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+#RUN echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+#RUN echo 'eval "$(pyenv init -)"' >> ~/.bashrc
 
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 
 RUN sdk install java 21.0.6-tem
 RUN sdk install maven
 
-RUN pyenv install 3.13
-RUN pyenv global 3
+#RUN pyenv install 3.13
+#RUN pyenv global 3
 
 RUN nvm install 22
 

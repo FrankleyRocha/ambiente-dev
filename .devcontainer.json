@@ -2,18 +2,14 @@
 	"name": "AMBIENTE-DEV",
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",
-	//"workspaceFolder": "/home/toolbox/projects",
-	//"mounts": [
-    //	"source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
-	//],
-	"workspaceFolder": "/workspace",
+	"workspaceFolder": "/home/toolbox/workspace/springboot-pg-example",
 	"shutdownAction": "stopCompose",
 	"customizations": {
 		"vscode": {
 			"extensions": [
 				"vscjava.vscode-java-pack",
 				"vmware.vscode-boot-dev-pack",
-				"ms-ossdata.vscode-postgresql"
+				"linjun.dbeaver-support"
 			]
 		}
 	},
@@ -24,7 +20,13 @@
 		"2525": {
 			"label": "smtp4dev",
 			"onAutoForward": "notify"
+		},
+		"8080": {
+			"label": "springapp",
+			"onAutoForward": "notify"
 		}
 	},
-	"remoteUser": "toolbox"
+	"remoteUser": "toolbox",
+	"containerUser": "toolbox"
+
 }
