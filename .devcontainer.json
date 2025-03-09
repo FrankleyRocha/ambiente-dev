@@ -1,0 +1,30 @@
+{
+	"name": "AMBIENTE-DEV",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	//"workspaceFolder": "/home/toolbox/projects",
+	//"mounts": [
+    //	"source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+	//],
+	"workspaceFolder": "/workspace",
+	"shutdownAction": "stopCompose",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"vscjava.vscode-java-pack",
+				"vmware.vscode-boot-dev-pack",
+				"ms-ossdata.vscode-postgresql"
+			]
+		}
+	},
+	"forwardPorts": [
+		2525
+	],
+	"portsAttributes": {
+		"2525": {
+			"label": "smtp4dev",
+			"onAutoForward": "notify"
+		}
+	},
+	"remoteUser": "toolbox"
+}
