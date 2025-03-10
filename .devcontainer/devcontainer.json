@@ -2,7 +2,7 @@
 	"name": "AMBIENTE-DEV",
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",
-	"workspaceFolder": "/home/toolbox/workspace/springboot-pg-example",
+	"workspaceFolder": "/home/toolbox/workspace",
 	"shutdownAction": "stopCompose",
 	"customizations": {
 		"vscode": {
