@@ -7,9 +7,7 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"vscjava.vscode-java-pack",
-				"vmware.vscode-boot-dev-pack",
-				"linjun.dbeaver-support"
+				"pleiades.java-extension-pack-jdk"
 			]
 		}
 	},

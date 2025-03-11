@@ -18,9 +18,11 @@ public class PersonService {
 
     private final PersonRepository personRepository;
     private final PersonMapper personMapper;
+    private final MailService mailService;
 
     /**
      * Find all persons
+     *
      * @return List of all persons as DTOs
      */
     @Transactional(readOnly = true)
@@ -32,6 +34,7 @@ public class PersonService {
 
     /**
      * Find a person by ID
+     *
      * @param id The UUID of the person to find
      * @return The person as a DTO if found, otherwise null
      */
@@ -44,6 +47,7 @@ public class PersonService {
 
     /**
      * Create a new person
+     *
      * @param personDTO The person data to create
      * @return The created person as a DTO with generated ID
      */
@@ -53,12 +57,19 @@ public class PersonService {
         personDTO.setId(null);
         var person = personMapper.toEntity(personDTO);
         var savedPerson = personRepository.save(person);
+
+        mailService.sendMail(
+                personDTO.getEmail(),
+                "Prezado(a) %s, seja bem vindo!".formatted(personDTO.getName()),
+                "Boas vindas!");
+
         return personMapper.toDTO(savedPerson);
     }
 
     /**
      * Update an existing person
-     * @param id The UUID of the person to update
+     *
+     * @param id        The UUID of the person to update
      * @param personDTO The updated person data
      * @return The updated person as a DTO if found, otherwise null
      */
@@ -77,6 +88,7 @@ public class PersonService {
 
     /**
      * Delete a person by ID
+     *
      * @param id The UUID of the person to delete
      * @return true if deleted, false if not found
      */
