@@ -18,7 +18,7 @@ Instalar Ubuntu-24.04. Forneça o usuário e senha quando solicitado.
 wsl --install Ubuntu-24.04
 ```
 
-* Para definir o Ubuntu-24.04 como distribuição padrão
+* Para definir o Ubuntu-24.04 como distribuição padrão [Executar no CMD ou Powershell]
 ```
 wsl -s Ubuntu-24.04
 ```
