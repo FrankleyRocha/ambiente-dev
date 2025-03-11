@@ -11,11 +11,11 @@ services:
         POSTGRES_DB: postgres
         POSTGRES_HOSTNAME: localhost
     volumes:
-      -  ../springboot-pg-example:/home/toolbox/workspace:cached
+      -  ../workspace:/home/toolbox/workspace:cached
     tty: true
   db:
     container_name: postgresdb
-    image: postgres:latest
+    image: postgres
     restart: unless-stopped
     volumes:
       - postgres-data:/var/lib/postgresql/data:rw
@@ -24,10 +24,20 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_DB: postgres
     network_mode: service:app
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_CONFIG_ALLOW_SPECIAL_EMAIL_DOMAINS=['localhost']
+      - PGADMIN_DEFAULT_EMAIL=postgres@localhost
+      - PGADMIN_DEFAULT_PASSWORD=postgres
+      - PGADMIN_DISABLE_POSTFIX=true
+      - PGADMIN_LISTEN_PORT=5050
+      - PGADMIN_CONFIG_GLOBALLY_DELIVERABLE=False
+    network_mode: service:app
   mail:
     container_name: smtp4dev
     image: rnwood/smtp4dev
-    network_mode: service:app
     environment:
       - SERVEROPTIONS__URLS=http://*:2525
       - ASPNETCORE_HTTP_PORTS=2525
+    network_mode: service:app

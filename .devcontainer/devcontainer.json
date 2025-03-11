@@ -14,7 +14,8 @@
 		}
 	},
 	"forwardPorts": [
-		2525
+		2525,
+		5050
 	],
 	"portsAttributes": {
 		"2525": {
