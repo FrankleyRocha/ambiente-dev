@@ -86,7 +86,9 @@ git config --global user.email "your.email@address"
 
 Caso o git windows esteja na pasta de seu usuario, execute no WSL:
 ```bash
+/mnt/c/
 git config --global credential.helper "/mnt/c/Users/$(cmd.exe /c echo %username% | tr -d '\r')/AppData/Local/Programs/Git/mingw64/bin/git-credential-manager.exe"
+cd ~
 ```
 
 Caso o git windows foi instalado globalmente, execute no WSL:
@@ -94,7 +96,7 @@ Caso o git windows foi instalado globalmente, execute no WSL:
 git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/bin/git-credential-manager.exe"
 ```
 
-### 6. Exponha o daemon do docker ao Windows via porta 2375
+### 6. [opcional] Exponha o daemon do docker ao Windows via porta 2375
 
 Este comando permite que o daemon do Docker receba instruções da porta 2375. Isso também significa que podemos acessar a porta 2375 do Windows.
 ```bash
@@ -105,16 +107,16 @@ sudo systemctl daemon-reload
 sudo systemctl restart docker.service
 ```
 
-## Integrar o cliente Docker (para Windows) com o daemon Docker no WSL
+## [opcional] Integrar o cliente Docker (para Windows) com o daemon Docker no WSL
 
-### 7. Baixe o cliente Docker para WINDOWS
+### 7. [opcional] Baixe o cliente Docker para WINDOWS
 Baixe o cliente docker [desta url](https://download.docker.com/win/static/stable/x86_64/docker-28.0.1.zip) . No momento da escrita, a versão mais recente é docker-28.0.1.zip. Extraia o zip baixado e adicione a pasta à sua variável de ambiente PATH.
 
 https://github.com/docker/compose/releases/download/v2.33.1/docker-compose-windows-x86_64.exe
 
 * Verifique se tudo funciona digitando `docker` em um novo CMD ou Powershell.
 
-### 8. Integrar o cliente Docker Windows com o Docker instalado no WSL
+### 8. [opcional] Integrar o cliente Docker Windows com o Docker instalado no WSL
 ```
 # rode este commando no CMD ou Powershell
 
