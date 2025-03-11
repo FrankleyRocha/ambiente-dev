@@ -70,7 +70,7 @@ git config --global user.email "your.email@address"
 
 Caso o git windows esteja na pasta de seu usuario, execute no WSL:
 ```bash
-/mnt/c/
+cd /mnt/c/
 git config --global credential.helper "/mnt/c/Users/$(cmd.exe /c echo %username% | tr -d '\r')/AppData/Local/Programs/Git/mingw64/bin/git-credential-manager.exe"
 cd ~
 ```
