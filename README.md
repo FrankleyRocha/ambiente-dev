@@ -1,8 +1,8 @@
-# Docker via WSL 
+# Docker via WSL
 
 ## Instalando o Docker no WSL
 
-### 1. Habilitar 
+### 1. Habilitar
 Para habilitar o WSL2 na sua máquina Windows, execute este comando no Powershell (execute como Administrador) . Certifique-se de reiniciar seu computador após a conclusão deste comando.
 
 * Você pode pular esta etapa se já tiver instalado o WSL2 anteriormente.
@@ -11,7 +11,7 @@ Para habilitar o WSL2 na sua máquina Windows, execute este comando no Powershel
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 ```
 
-### 2. Instale o WSL2 
+### 2. Instale o WSL2
 
 Instalar Ubuntu-24.04. Forneça o usuário e senha quando solicitado.
 ```
@@ -24,7 +24,7 @@ wsl --install Ubuntu-24.04
 Use o comando abaixo para instalar o Docker no Ubuntu 24.04.
 ```bash
 #!/bin/bash
-# If your machine is behind corporate firewall, 
+# If your machine is behind corporate firewall,
 # make sure to define your HTTP_PROXY and HTTPS_PROXY before running the command below
 
 sudo apt-get update
@@ -52,7 +52,7 @@ sudo systemctl start containerd.service
 ### 4. [opcional] Configurar PROXY
 ```bash
 #!/bin/bash
-# If your machine is behind corporate firewall, 
+# If your machine is behind corporate firewall,
 # make sure to define your HTTP_PROXY and HTTPS_PROXY before running the command below
 
 sudo mkdir -p /etc/systemd/system/docker.service.d
@@ -71,7 +71,30 @@ sudo systemctl restart docker.service
 sudo systemctl restart containerd.service
 ```
 
-### 5. Exponha o daemon do docker ao Windows via porta 2375
+### 5. Configurando o git do WSL para integração ao git Windows
+
+* Instale o git para windows [download git](https://git-scm.com/downloads)
+
+No WSL execute:
+```bash
+git config --global user.name "Your Name"
+```
+
+```bash
+git config --global user.email "your.email@address"
+```
+
+Caso o git windows esteja na pasta de seu usuario, execute no WSL:
+```bash
+git config --global credential.helper "/mnt/c/Users/$(cmd.exe /c echo %username% | tr -d '\r')/AppData/Local/Programs/Git/mingw64/bin/git-credential-manager.exe"
+```
+
+Caso o git windows foi instalado globalmente, execute no WSL:
+```bash
+git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/bin/git-credential-manager.exe"
+```
+
+### 6. Exponha o daemon do docker ao Windows via porta 2375
 
 Este comando permite que o daemon do Docker receba instruções da porta 2375. Isso também significa que podemos acessar a porta 2375 do Windows.
 ```bash
@@ -84,14 +107,14 @@ sudo systemctl restart docker.service
 
 ## Integrar o cliente Docker (para Windows) com o daemon Docker no WSL
 
-### 6. Baixe o cliente Docker para WINDOWS
+### 7. Baixe o cliente Docker para WINDOWS
 Baixe o cliente docker [desta url](https://download.docker.com/win/static/stable/x86_64/docker-28.0.1.zip) . No momento da escrita, a versão mais recente é docker-28.0.1.zip. Extraia o zip baixado e adicione a pasta à sua variável de ambiente PATH.
 
 https://github.com/docker/compose/releases/download/v2.33.1/docker-compose-windows-x86_64.exe
 
 * Verifique se tudo funciona digitando `docker` em um novo CMD ou Powershell.
 
-### 7. Integrar o cliente Docker Windows com o Docker instalado no WSL
+### 8. Integrar o cliente Docker Windows com o Docker instalado no WSL
 ```
 # rode este commando no CMD ou Powershell
 
