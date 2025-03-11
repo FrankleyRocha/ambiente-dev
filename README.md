@@ -49,29 +49,7 @@ sudo systemctl start docker.service
 sudo systemctl start containerd.service
 ```
 
-### 4. [opcional] Configurar PROXY
-```bash
-#!/bin/bash
-# If your machine is behind corporate firewall,
-# make sure to define your HTTP_PROXY and HTTPS_PROXY before running the command below
-
-sudo mkdir -p /etc/systemd/system/docker.service.d
-sudo touch /etc/systemd/system/docker.service.d/http-proxy.conf
-echo "[Service]" | sudo tee -a /etc/systemd/system/docker.service.d/http-proxy.conf
-echo "Environment='HTTP_PROXY=$HTTP_PROXY'" | sudo tee -a /etc/systemd/system/docker.service.d/http-proxy.conf
-echo "Environment='HTTPS_PROXY=$HTTPS_PROXY'" | sudo tee -a /etc/systemd/system/docker.service.d/http-proxy.conf
-echo "Environment='NO_PROXY=$NO_PROXY'" | sudo tee -a /etc/systemd/system/docker.service.d/http-proxy.conf
-echo "Environment='http_proxy=$http_proxy'" | sudo tee -a /etc/systemd/system/docker.service.d/http-proxy.conf
-echo "Environment='https_proxy=$https_proxy'" | sudo tee -a /etc/systemd/system/docker.service.d/http-proxy.conf
-echo "Environment='no_proxy=$no_proxy'" | sudo tee -a /etc/systemd/system/docker.service.d/http-proxy.conf
-
-# restart docker daemon
-sudo systemctl daemon-reload
-sudo systemctl restart docker.service
-sudo systemctl restart containerd.service
-```
-
-### 5. Configurando o git do WSL para integração ao git Windows
+### 4. Configurando o git do WSL para integração ao git Windows
 
 * Instale o git para windows [download git](https://git-scm.com/downloads)
 
@@ -96,7 +74,29 @@ Caso o git windows foi instalado globalmente, execute no WSL:
 git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/bin/git-credential-manager.exe"
 ```
 
-### 6. [opcional] Exponha o daemon do docker ao Windows via porta 2375
+### 5. Configurar PROXY [opcional]
+```bash
+#!/bin/bash
+# If your machine is behind corporate firewall,
+# make sure to define your HTTP_PROXY and HTTPS_PROXY before running the command below
+
+sudo mkdir -p /etc/systemd/system/docker.service.d
+sudo touch /etc/systemd/system/docker.service.d/http-proxy.conf
+echo "[Service]" | sudo tee -a /etc/systemd/system/docker.service.d/http-proxy.conf
+echo "Environment='HTTP_PROXY=$HTTP_PROXY'" | sudo tee -a /etc/systemd/system/docker.service.d/http-proxy.conf
+echo "Environment='HTTPS_PROXY=$HTTPS_PROXY'" | sudo tee -a /etc/systemd/system/docker.service.d/http-proxy.conf
+echo "Environment='NO_PROXY=$NO_PROXY'" | sudo tee -a /etc/systemd/system/docker.service.d/http-proxy.conf
+echo "Environment='http_proxy=$http_proxy'" | sudo tee -a /etc/systemd/system/docker.service.d/http-proxy.conf
+echo "Environment='https_proxy=$https_proxy'" | sudo tee -a /etc/systemd/system/docker.service.d/http-proxy.conf
+echo "Environment='no_proxy=$no_proxy'" | sudo tee -a /etc/systemd/system/docker.service.d/http-proxy.conf
+
+# restart docker daemon
+sudo systemctl daemon-reload
+sudo systemctl restart docker.service
+sudo systemctl restart containerd.service
+```
+
+### 6. Exponha o daemon do docker ao Windows via porta 2375 [opcional]
 
 Este comando permite que o daemon do Docker receba instruções da porta 2375. Isso também significa que podemos acessar a porta 2375 do Windows.
 ```bash
@@ -107,16 +107,16 @@ sudo systemctl daemon-reload
 sudo systemctl restart docker.service
 ```
 
-## [opcional] Integrar o cliente Docker (para Windows) com o daemon Docker no WSL
+## Integrar o cliente Docker (para Windows) com o daemon Docker no WSL [opcional]
 
-### 7. [opcional] Baixe o cliente Docker para WINDOWS
+### 7. Baixe o cliente Docker para WINDOWS
 Baixe o cliente docker [desta url](https://download.docker.com/win/static/stable/x86_64/docker-28.0.1.zip) . No momento da escrita, a versão mais recente é docker-28.0.1.zip. Extraia o zip baixado e adicione a pasta à sua variável de ambiente PATH.
 
 https://github.com/docker/compose/releases/download/v2.33.1/docker-compose-windows-x86_64.exe
 
 * Verifique se tudo funciona digitando `docker` em um novo CMD ou Powershell.
 
-### 8. [opcional] Integrar o cliente Docker Windows com o Docker instalado no WSL
+### 8. Integrar o cliente Docker Windows com o Docker instalado no WSL [opcional]
 ```
 # rode este commando no CMD ou Powershell
 
