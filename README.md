@@ -17,6 +17,12 @@ Instalar Ubuntu-24.04. Forneça o usuário e senha quando solicitado.
 ```
 wsl --install Ubuntu-24.04
 ```
+
+Definir o Ubuntu-24.04 como distribuição padrão
+```
+wsl -s Ubuntu-24.04
+```
+
 * Para acessar o shell do Ubuntu, digite `wsl` no CMD ou Powershell.
 
 ### 3. Instale o Docker no Ubuntu
