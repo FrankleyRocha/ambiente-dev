@@ -114,3 +114,5 @@ wsl
 | Verificar versão do WSL | CMD/PowerShell | ⚪️ Usuário comum                             |
 | Acessar o WSL           | CMD/PowerShell | ⚪️ Usuário comum                             |
 
+---
+* Para mais informações acesse o [guia de instalação do WSL oficial da microsoft](https://learn.microsoft.com/pt-br/windows/wsl/install)
